@@ -1,0 +1,20 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kolory.MainPage"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+
+        <Grid RowSpacing="25" RowDefinitions="*,Auto,Auto,Auto,*" ColumnDefinitions="*,65"
+              Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
+
+			<Rectangle x:Name="rectangle" Grid.Row="0" Fill="Black" Grid.ColumnSpan="2" />
+ 
+			<Slider x:Name="sliderR" Grid.Row="1" ValueChanged="slider_ValueChanged" />
+			<Label x:Name="labelR" Grid.Row="1" Grid.Column="1" WidthRequest="65" FontSize="25" Text="0" TextColor="Red" VerticalTextAlignment="Center"/>
+			<Slider x:Name="sliderG" Grid.Row="2" ValueChanged="slider_ValueChanged" />
+			<Label x:Name="labelG" Grid.Row="2" Grid.Column="1" WidthRequest="65" FontSize="25" Text="0" TextColor="Green" VerticalTextAlignment="Center"/>
+			<Slider x:Name="sliderB" Grid.Row="3" ValueChanged="slider_ValueChanged" />
+			<Label x:Name="labelB" Grid.Row="3" Grid.Column="1" WidthRequest="65" FontSize="25" Text="0" TextColor="Blue" VerticalTextAlignment="Center"/>
+
+
+		</Grid>
+</ContentPage>

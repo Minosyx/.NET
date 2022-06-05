@@ -1,0 +1,40 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Kolory_MAUI.MainPage"
+             xmlns:vm="clr-namespace:Kolory_MAUI.ViewModel"
+             xmlns:local="clr-namespace:Kolory_MAUI"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+    <ContentPage.Resources>
+        <local:DoubleToByteString x:Key="d2bs" />
+        <local:RGBToBrush x:Key="rgb2b" />
+		<local:DoubleToByte x:Key="d2b"/>
+    </ContentPage.Resources>
+
+    <Grid RowSpacing="25" ColumnSpacing="25" RowDefinitions="*,Auto,Auto,Auto,Auto" ColumnDefinitions="*,65"
+          Padding="{OnPlatform iOS='30,60,30,30', Default='30'}">
+        <Grid.BindingContext>
+            <vm:ColorsVM />
+        </Grid.BindingContext>
+
+        <Rectangle x:Name="rectangle" Grid.Row="0" Grid.ColumnSpan="2">
+            <Rectangle.Fill>
+                <MultiBinding Mode="OneWay" Converter="{StaticResource rgb2b}">
+                    <Binding Path="R"/>
+                    <Binding Path="G"/>
+                    <Binding Path="B"/>
+                </MultiBinding>
+            </Rectangle.Fill>
+        </Rectangle>
+ 
+        <Slider x:Name="sliderR" Grid.Row="1" Value="{Binding R, Mode=TwoWay}" />
+        <Label x:Name="labelR" Grid.Row="1" Grid.Column="1" WidthRequest="65" FontSize="25" Text="{Binding R, Mode=OneWay, Converter={StaticResource d2bs}}" TextColor="Red" VerticalTextAlignment="Center"/>
+        <Slider x:Name="sliderG" Grid.Row="2" Value="{Binding G, Mode=TwoWay}" />
+        <Label x:Name="labelG" Grid.Row="2" Grid.Column="1" WidthRequest="65" FontSize="25" Text="{Binding G, Mode=OneWay, Converter={StaticResource d2bs}}" TextColor="Green" VerticalTextAlignment="Center"/>
+        <Slider x:Name="sliderB" Grid.Row="3" Value="{Binding B, Mode=TwoWay}" />
+        <Label x:Name="labelB" Grid.Row="3" Grid.Column="1" WidthRequest="65" FontSize="25" Text="{Binding B, Mode=OneWay, Converter={StaticResource d2bs}}" TextColor="Blue" VerticalTextAlignment="Center"/>
+
+        <Button Text="Resetuj" WidthRequest="200"
+                Grid.Row="4" Command="{Binding ResetCommand}" />
+
+    </Grid>
+</ContentPage>
